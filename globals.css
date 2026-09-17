@@ -1,163 +1,273 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
+import {
+  ArrowRight,
+  BarChart3,
+  CheckCircle2,
+  ChevronRight,
+  FolderKanban,
+  Gauge,
+  ShieldCheck,
+  Sparkles,
+  Workflow,
+} from 'lucide-react'
 
-@custom-variant dark (&:is(.dark *));
+const stats = [
+  { label: 'Projects live', value: '184', detail: '+12% vs last month' },
+  { label: 'AI takeoffs', value: '2.4K', detail: 'Across all active sites' },
+  { label: 'Approval speed', value: '3.2x', detail: 'Faster than standard workflow' },
+]
 
-@theme inline {
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-foreground: var(--foreground);
-  --color-background: var(--background);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+const features = [
+  {
+    icon: FolderKanban,
+    title: 'Project Control',
+    description: 'Track cost, schedule, scope, and team accountability in a single operating view.',
+  },
+  {
+    icon: Sparkles,
+    title: 'AI Takeoff',
+    description: 'Automate quantity extraction and produce structured estimates from engineering data.',
+  },
+  {
+    icon: Workflow,
+    title: 'Approval Flow',
+    description: 'Route approvals, verify decisions, and keep every step auditable from a single trail.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Audit & Security',
+    description: 'Protect financial, procurement, and verification actions with immutable review records.',
+  },
+]
+
+const operations = [
+  'Project planning and scope tracking',
+  'AI-assisted quantity takeoff',
+  'Procurement and material issue visibility',
+  'Blind verification and approval gateways',
+]
+
+const activity = [
+  { name: 'NCC Tower B', value: '86%', status: 'On track' },
+  { name: 'ALQ Residential', value: '72%', status: 'Needs review' },
+  { name: 'Harbor Line', value: '94%', status: 'Ahead' },
+]
+
+export default function Page() {
+  return (
+    <main className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="mx-auto max-w-7xl px-6 pb-20 pt-6 lg:px-8">
+        <header className="panel sticky top-4 z-20 mb-8 flex items-center justify-between rounded-2xl px-5 py-4">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/15 text-lg font-bold text-emerald-300 ring-1 ring-emerald-400/30">
+              N
+            </div>
+            <div>
+              <p className="text-lg font-semibold tracking-tight text-white">NHJ AI</p>
+              <p className="text-xs text-slate-400">Construction intelligence suite</p>
+            </div>
+          </div>
+
+          <nav className="hidden items-center gap-8 text-sm text-slate-300 md:flex">
+            <a href="#platform" className="transition hover:text-white">Platform</a>
+            <a href="#workflow" className="transition hover:text-white">Workflow</a>
+            <a href="#insights" className="transition hover:text-white">Insights</a>
+            <a href="#security" className="transition hover:text-white">Security</a>
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <button className="hidden rounded-full border border-slate-700 bg-slate-900/80 px-4 py-2 text-sm font-medium text-slate-200 transition hover:border-slate-500 hover:text-white sm:inline-flex">
+              Sign in
+            </button>
+            <button className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-2 text-sm font-semibold text-slate-950 shadow-[0_12px_30px_rgba(16,185,129,0.35)] transition hover:bg-emerald-400">
+              Book demo
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        </header>
+
+        <section className="relative overflow-hidden rounded-[32px] border border-slate-800 bg-slate-900/80 px-6 py-8 shadow-2xl shadow-slate-950/40 md:px-10 md:py-12">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.22),_transparent_32%),radial-gradient(circle_at_bottom_right,_rgba(59,130,246,0.15),_transparent_30%)]" />
+          <div className="relative grid items-center gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
+                <Sparkles size={14} />
+                AI-powered execution for construction teams
+              </div>
+
+              <h1 className="max-w-xl text-4xl font-black tracking-tight text-white md:text-5xl lg:text-6xl">
+                Build smarter projects with AI-led control.
+              </h1>
+
+              <p className="mt-5 max-w-xl text-base leading-8 text-slate-300 md:text-lg">
+                From preliminary takeoff to budget approval and on-site execution, NHJ AI connects planning,
+                procurement, verification, and memory into one operating system.
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <button className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-400">
+                  Launch platform
+                  <ArrowRight size={16} />
+                </button>
+                <button className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-5 py-3 text-sm font-semibold text-white transition hover:border-slate-500 hover:bg-slate-800">
+                  View workflow
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {stats.map((item) => (
+                  <div key={item.label} className="panel rounded-2xl p-4">
+                    <p className="text-2xl font-black text-white">{item.value}</p>
+                    <p className="mt-2 text-sm text-slate-300">{item.label}</p>
+                    <p className="mt-1 text-xs text-emerald-300">{item.detail}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="panel glow relative overflow-hidden rounded-[28px] p-5">
+                <div className="flex items-center justify-between pb-4">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Operations</p>
+                    <h2 className="mt-2 text-2xl font-bold text-white">Portfolio overview</h2>
+                  </div>
+                  <div className="rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-medium text-emerald-300">
+                    Live
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {activity.map((item) => (
+                    <div key={item.name} className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+                      <div className="mb-3 flex items-center justify-between gap-3">
+                        <p className="text-sm font-medium text-slate-200">{item.name}</p>
+                        <span className="text-xs text-emerald-300">{item.status}</span>
+                      </div>
+                      <div className="h-2 overflow-hidden rounded-full bg-slate-800">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400"
+                          style={{ width: item.value }}
+                        />
+                      </div>
+                      <div className="mt-2 flex items-center justify-between text-xs text-slate-400">
+                        <span>Progress</span>
+                        <span className="font-semibold text-slate-200">{item.value}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Forecast</p>
+                      <p className="mt-2 text-3xl font-black text-white">$12.4M</p>
+                    </div>
+                    <div className="rounded-xl bg-cyan-500/10 p-2 text-cyan-300">
+                      <BarChart3 size={22} />
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm text-slate-300">Budget confidence is stable across 8 current projects.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="platform" className="mt-14">
+          <div className="mb-8 flex items-end justify-between gap-4">
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">Platform</p>
+              <h2 className="mt-2 text-3xl font-black text-white md:text-4xl">A unified view of project execution</h2>
+            </div>
+            <div className="hidden items-center gap-2 rounded-full border border-slate-700 bg-slate-900/80 px-4 py-2 text-sm text-slate-300 md:flex">
+              <Gauge size={16} className="text-emerald-300" />
+              Real-time operational intelligence
+            </div>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {features.map(({ icon: Icon, title, description }) => (
+              <div key={title} className="panel rounded-3xl p-5 transition hover:-translate-y-1 hover:border-slate-600">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-500/12 text-emerald-300 ring-1 ring-emerald-400/20">
+                  <Icon size={22} />
+                </div>
+                <h3 className="text-xl font-semibold text-white">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-300">{description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="workflow" className="mt-14 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="panel rounded-[28px] p-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Workflow</p>
+            <h3 className="mt-3 text-3xl font-black text-white">Operational flow across the lifecycle</h3>
+            <div className="mt-6 space-y-4">
+              {operations.map((item, index) => (
+                <div key={item} className="flex items-start gap-3 rounded-2xl border border-slate-800 bg-slate-900/70 p-3">
+                  <div className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-full bg-cyan-500/15 text-sm font-semibold text-cyan-300">
+                    {index + 1}
+                  </div>
+                  <p className="text-sm leading-7 text-slate-200">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div id="insights" className="panel rounded-[28px] p-6">
+            <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">Insights</p>
+                <h3 className="mt-2 text-2xl font-bold text-white">Project health snapshot</h3>
+              </div>
+              <div className="flex items-center gap-2 rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-300">
+                <CheckCircle2 size={14} />
+                Stable
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+                <p className="text-sm text-slate-400">Material approvals</p>
+                <p className="mt-2 text-3xl font-black text-white">93%</p>
+                <p className="mt-2 text-xs text-emerald-300">+7% from last cycle</p>
+              </div>
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
+                <p className="text-sm text-slate-400">Verification backlog</p>
+                <p className="mt-2 text-3xl font-black text-white">18</p>
+                <p className="mt-2 text-xs text-amber-300">Down from 31</p>
+              </div>
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 sm:col-span-2">
+                <div className="mb-5 flex items-center justify-between gap-3">
+                  <p className="text-sm text-slate-400">Execution confidence</p>
+                  <p className="text-xs text-cyan-300">Quarter trend</p>
+                </div>
+                <div className="flex h-28 items-end gap-3">
+                  {[38, 46, 52, 58, 68, 78, 90].map((height, index) => (
+                    <div key={height} className="flex-1 rounded-t-2xl bg-gradient-to-t from-emerald-500/80 via-teal-400 to-cyan-400" style={{ height: `${height}%`, opacity: 0.75 + index * 0.04 }} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="security" className="mt-14 rounded-[30px] border border-slate-800 bg-slate-900/70 p-6 md:p-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-xl">
+              <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">Security</p>
+              <h3 className="mt-3 text-3xl font-black text-white">Controlled operations with traceable decisions</h3>
+            </div>
+            <div className="flex items-center gap-3 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-300">
+              <ShieldCheck size={18} />
+              Audit-ready by design
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  )
 }
 
-:root {
-  color-scheme: light;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  color-scheme: dark;
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    color-scheme: dark;
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
