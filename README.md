@@ -1,27 +1,20 @@
 # NHJ AI
 
-This repository contains a working starter foundation for the NHJ AI platform.
+منصة نهج لإدارة مشاريع الإنشاءات والمشتريات والتحقق.
 
-## Stack
+## التشغيل المحلي
 
-- Frontend: Next.js (App Router)
-- Backend: FastAPI
-
-## Quick start
-
-### Frontend
+### الواجهة
 
 ```bash
-git clone https://github.com/nhjalbunian-tech/NHJ.git
-cd NHJ
 corepack enable
 pnpm install
 pnpm dev
 ```
 
-Open http://localhost:3000
+افتح http://localhost:3000
 
-### Backend
+### الـ Backend
 
 ```bash
 cd backend
@@ -32,10 +25,18 @@ cp .env.example .env
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Open http://127.0.0.1:8000/docs
+افتح http://127.0.0.1:8000/docs
 
-## Notes
+## API
 
-- The frontend and backend are separated intentionally for clean development.
-- The code here is a usable foundation, not a full production ERP implementation.
-- The backend is intentionally minimal and ready to expand with auth, project, procurement, and takeoff modules.
+- `GET /health`
+- `GET /api/dashboard`
+- `GET|POST /api/projects`
+- `GET|POST /api/procurement`
+
+## النشر
+
+- الواجهة: اربط المستودع بخدمة Vercel، وسيكتشف Next.js تلقائيًا.
+- الـ Backend: اربط المستودع بخدمة Render؛ ملف `render.yaml` جاهز ويستخدم مجلد `backend`.
+
+> البيانات الحالية داخل الذاكرة للتجربة. قبل الإنتاج يجب إضافة PostgreSQL ومصادقة حقيقية ومتغيرات سرية.
